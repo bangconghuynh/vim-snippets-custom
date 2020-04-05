@@ -12,6 +12,6 @@ To apply the patches to `vim-snippets`, do the following:
 1. Install the required plugins.
 2. Change directory to `~/.vim/bundle/vim-snippets`.
 3. Execute
-```
-git am --signoff < path/to/patch_file
-```
+    ```
+    git am --signoff < path/to/patch_file
+    ```
