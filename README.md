@@ -1,5 +1,12 @@
 # vim-snippets-custom
-Additional vim snippets for personal use
+Additional `Python` vim snippets for personal use.
+These include:
+* `deffa`: function or class method with type annotation
+* `defa`: function with docstrings and type annotation
+* `defca`: class method with docstrings and type annotation
+* `defsa`: static method with docstrings and type annotation
+* `goprop`: getter-only property with type annotation
+* `gsprop`: getter-setter property with type annotation
 
 # Requirements
 These additional snippets are contained in a patch file for `vim-snippets`.
