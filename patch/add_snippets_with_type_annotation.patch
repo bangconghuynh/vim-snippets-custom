@@ -1,0 +1,113 @@
+From 3cc4aa4816db51f4be334fbcf76bf3e52e4866fd Mon Sep 17 00:00:00 2001
+From: Bang Huynh <cbh31@cam.ac.uk>
+Date: Sun, 5 Apr 2020 12:48:22 +0100
+Subject: [PATCH] Added snippets for functions and properties with type
+ annotation.
+
+---
+ UltiSnips/python.snippets | 84 ++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 83 insertions(+), 1 deletion(-)
+
+diff --git a/UltiSnips/python.snippets b/UltiSnips/python.snippets
+index 6e77504..3e464a0 100644
+--- a/UltiSnips/python.snippets
++++ b/UltiSnips/python.snippets
+@@ -253,7 +253,6 @@ def write_function_docstring(t, snip):
+ 		snip += 'TODO'
+ 	else:
+ 		snip += format_return(style)
+-	snip.rv += '\n' + snip.mkline('', indent='')
+ 	snip += triple_quotes(snip)
+ 
+ def get_dir_and_file_name(snip):
+@@ -720,4 +719,87 @@ snippet pmdoc "pocoo style module doc string" b
+ $0
+ endsnippet
+ 
++##############
++# RevQCMagic #
++##############
++
++########################################
++# Class & Special Method Name Snippets #
++########################################
++snippet deffa "function or class method with type annotation"
++def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`$2) -> ${3:returntype}:
++	$0
++endsnippet
++
++
++snippet defa "function with docstrings and type annotation" b
++def ${1:function}(`!p
++if snip.indent:
++	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}) -> ${3:returntype}:
++	`!p snip.rv = triple_quotes(snip)`${5:TODO: Docstring for $1.}`!p
++write_function_docstring(t, snip) `
++	${6:${VISUAL:pass}}
++endsnippet
++
++
++snippet defca "class method with docstrings" b
++@classmethod
++def ${1:function}(`!p
++if snip.indent:
++	snip.rv = 'cls' + (", " if len(t[2]) else "")`${2:arg1}) -> ${3:returntype}:
++	`!p snip.rv = triple_quotes(snip)`${5:TODO: Docstring for $1.}`!p
++write_function_docstring(t, snip) `
++	${6:${VISUAL:pass}}
++endsnippet
++
++
++snippet defsa "static method with docstrings" b
++@staticmethod
++def ${1:function}(${2:arg1}) -> ${3:returntype}:
++	`!p snip.rv = triple_quotes(snip)`${5:TODO: Docstring for $1.}`!p
++write_function_docstring(t, snip) `
++	${6:${VISUAL:pass}}
++endsnippet
++
++
++
++##############
++# PROPERTIES #
++##############
++snippet goprop "Getter-Only Property" b
++@property
++def ${1:name}(self) -> ${2:returntype}:
++	`!p snip.rv = triple_quotes(snip) if t[2] else ''
++`${3:TODO: Docstring for $1.}`!p
++if t[2]:
++	snip >> 1
++
++	snip.rv += '\n' + snip.mkline('', indent='')
++	snip += 'This property has no setter.'
++	snip += triple_quotes(snip)
++else:
++	snip.rv = ""`
++	${4:return self._$1}$0
++endsnippet
++
++
++snippet gsprop "Getter-Setter Property" b
++@property
++def ${1:name}(self) -> ${2:returntype}:
++	`!p snip.rv = triple_quotes(snip) if t[2] else ''
++`${3:TODO: Docstring for $1.}`!p
++if t[2]:
++	snip >> 1
++
++	snip += triple_quotes(snip)
++else:
++	snip.rv = ""`
++	${4:return self._$1}
++
++@$1.setter
++def $1(self, ${5:value}: $2) -> None:
++	${6:self._$1 = $5}$0
++endsnippet
++
++
+ # vim:ft=snippets:
+-- 
+2.7.4
+
