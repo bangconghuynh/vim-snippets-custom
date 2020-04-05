@@ -1,7 +1,7 @@
 From 3cc4aa4816db51f4be334fbcf76bf3e52e4866fd Mon Sep 17 00:00:00 2001
 From: Bang Huynh <cbh31@cam.ac.uk>
 Date: Sun, 5 Apr 2020 12:48:22 +0100
-Subject: [PATCH] Added snippets for functions and properties with type
+Subject: [PATCH 1/2] Added snippets for functions and properties with type
  annotation.
 
 ---
@@ -108,6 +108,59 @@ index 6e77504..3e464a0 100644
 +
 +
  # vim:ft=snippets:
+-- 
+2.7.4
+
+
+From c778ad6bf7359d8d645f2d764e47a67becbdfa39 Mon Sep 17 00:00:00 2001
+From: Bang Huynh <cbh31@cam.ac.uk>
+Date: Sun, 5 Apr 2020 13:08:29 +0100
+Subject: [PATCH 2/2] Updated descriptions of snippets with type annotation.
+
+---
+ UltiSnips/python.snippets | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/UltiSnips/python.snippets b/UltiSnips/python.snippets
+index 3e464a0..3d158fc 100644
+--- a/UltiSnips/python.snippets
++++ b/UltiSnips/python.snippets
+@@ -742,7 +742,7 @@ write_function_docstring(t, snip) `
+ endsnippet
+ 
+ 
+-snippet defca "class method with docstrings" b
++snippet defca "class method with docstrings and type annotation" b
+ @classmethod
+ def ${1:function}(`!p
+ if snip.indent:
+@@ -753,7 +753,7 @@ write_function_docstring(t, snip) `
+ endsnippet
+ 
+ 
+-snippet defsa "static method with docstrings" b
++snippet defsa "static method with docstrings and type annotation" b
+ @staticmethod
+ def ${1:function}(${2:arg1}) -> ${3:returntype}:
+ 	`!p snip.rv = triple_quotes(snip)`${5:TODO: Docstring for $1.}`!p
+@@ -766,7 +766,7 @@ endsnippet
+ ##############
+ # PROPERTIES #
+ ##############
+-snippet goprop "Getter-Only Property" b
++snippet goprop "getter-only property with type annotation" b
+ @property
+ def ${1:name}(self) -> ${2:returntype}:
+ 	`!p snip.rv = triple_quotes(snip) if t[2] else ''
+@@ -783,7 +783,7 @@ else:
+ endsnippet
+ 
+ 
+-snippet gsprop "Getter-Setter Property" b
++snippet gsprop "getter-setter property with type annotation" b
+ @property
+ def ${1:name}(self) -> ${2:returntype}:
+ 	`!p snip.rv = triple_quotes(snip) if t[2] else ''
 -- 
 2.7.4
 
